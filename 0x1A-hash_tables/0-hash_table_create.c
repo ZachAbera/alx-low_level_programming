@@ -1,4 +1,4 @@
-#include "hash_tables.h"
+#include "../hash_tables.h"
 /**
  * hash_table_create - create a hash table of BUFF_SIZE
  * @size: len of new hash tab
