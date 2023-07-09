@@ -1,34 +1,27 @@
-#include "../hash_tables.h"
-/**
- * hash_table_create - create a hash table of BUFF_SIZE
- * @size: len of new hash tab
- * Return: new hash tab
- */
+#include "hash_tables.h"
 
+/**
+ * hash_table_create - Creates a hash table.
+ * @size: The size of the array.
+ *
+ * Return: If an error occurs - NULL.
+ *         Otherwise - a pointer to the new hash table.
+ */
 hash_table_t *hash_table_create(unsigned long int size)
 {
-	hash_table_t *new_tab = NULL;
+	hash_table_t *ht;
 	unsigned long int i;
 
-	/* create table hash */
-	new_tab = malloc(sizeof(hash_table_t));
-	if (new_tab == NULL)
+	ht = malloc(sizeof(hash_table_t));
+	if (ht == NULL)
 		return (NULL);
 
-	/* create array for each node in the table hash */
-	new_tab->array = malloc(sizeof(hash_node_t *) * size);
-	if (new_tab->array == NULL)
-	{
-		free(new_tab);
+	ht->size = size;
+	ht->array = malloc(sizeof(hash_node_t *) * size);
+	if (ht->array == NULL)
 		return (NULL);
-	}
-
 	for (i = 0; i < size; i++)
-	{
-		new_tab->array[i] = NULL;
-	}
-	/* save len of table_hash create */
-	new_tab->size = size;
+		ht->array[i] = NULL;
 
-	return (new_tab);
+	return (ht);
 }
